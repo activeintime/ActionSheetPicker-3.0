@@ -1,0 +1,73 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [
+    {
+      'type': 'directory',
+      'name': "/Users/morgz/iPhone/frameworkslibraries/ActionSheetPicker-3.0/Build/Products/Debug-iphoneos/CoreActionSheetPicker.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "AbstractActionSheetPicker.h",
+          'external-contents': "/Users/morgz/iPhone/frameworkslibraries/ActionSheetPicker-3.0/Pickers/AbstractActionSheetPicker.h"
+        },
+        {
+          'type': 'file',
+          'name': "ActionSheetCustomPicker.h",
+          'external-contents': "/Users/morgz/iPhone/frameworkslibraries/ActionSheetPicker-3.0/Pickers/ActionSheetCustomPicker.h"
+        },
+        {
+          'type': 'file',
+          'name': "ActionSheetCustomPickerDelegate.h",
+          'external-contents': "/Users/morgz/iPhone/frameworkslibraries/ActionSheetPicker-3.0/Pickers/ActionSheetCustomPickerDelegate.h"
+        },
+        {
+          'type': 'file',
+          'name': "ActionSheetDatePicker.h",
+          'external-contents': "/Users/morgz/iPhone/frameworkslibraries/ActionSheetPicker-3.0/Pickers/ActionSheetDatePicker.h"
+        },
+        {
+          'type': 'file',
+          'name': "ActionSheetDistancePicker.h",
+          'external-contents': "/Users/morgz/iPhone/frameworkslibraries/ActionSheetPicker-3.0/Pickers/ActionSheetDistancePicker.h"
+        },
+        {
+          'type': 'file',
+          'name': "ActionSheetLocalePicker.h",
+          'external-contents': "/Users/morgz/iPhone/frameworkslibraries/ActionSheetPicker-3.0/Pickers/ActionSheetLocalePicker.h"
+        },
+        {
+          'type': 'file',
+          'name': "ActionSheetStringPicker.h",
+          'external-contents': "/Users/morgz/iPhone/frameworkslibraries/ActionSheetPicker-3.0/Pickers/ActionSheetStringPicker.h"
+        },
+        {
+          'type': 'file',
+          'name': "CoreActionSheetPicker-Swift.h",
+          'external-contents': "/Users/morgz/iPhone/frameworkslibraries/ActionSheetPicker-3.0/Build/Products/Debug-iphoneos/CoreActionSheetPicker.framework/Headers/CoreActionSheetPicker-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "CoreActionSheetPicker.h",
+          'external-contents': "/Users/morgz/iPhone/frameworkslibraries/ActionSheetPicker-3.0/CoreActionSheetPicker/CoreActionSheetPicker/CoreActionSheetPicker/CoreActionSheetPicker.h"
+        },
+        {
+          'type': 'file',
+          'name': "DistancePickerView.h",
+          'external-contents': "/Users/morgz/iPhone/frameworkslibraries/ActionSheetPicker-3.0/Pickers/DistancePickerView.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/morgz/iPhone/frameworkslibraries/ActionSheetPicker-3.0/Build/Products/Debug-iphoneos/CoreActionSheetPicker.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/morgz/iPhone/frameworkslibraries/ActionSheetPicker-3.0/Build/Products/Debug-iphoneos/CoreActionSheetPicker.framework/Modules/module.modulemap"
+        }
+      ]
+    }
+  ]
+}
