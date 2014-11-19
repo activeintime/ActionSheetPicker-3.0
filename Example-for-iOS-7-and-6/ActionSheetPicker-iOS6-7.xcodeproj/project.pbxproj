@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1BFA94071A1CBAA100814AEC /* ActionSheetPoolDistancePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA94061A1CBAA100814AEC /* ActionSheetPoolDistancePicker.m */; };
 		1C6EE71A192BB41600A27994 /* ActionSheetPickerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6EE70B192BB41600A27994 /* ActionSheetPickerAppDelegate.m */; };
 		1C6EE71B192BB41600A27994 /* ActionSheetPickerCustomPickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6EE70D192BB41600A27994 /* ActionSheetPickerCustomPickerDelegate.m */; };
 		1C6EE71C192BB41600A27994 /* ActionSheetPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6EE70F192BB41600A27994 /* ActionSheetPickerViewController.m */; };
@@ -35,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1BFA94051A1CBAA100814AEC /* ActionSheetPoolDistancePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetPoolDistancePicker.h; sourceTree = "<group>"; };
+		1BFA94061A1CBAA100814AEC /* ActionSheetPoolDistancePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetPoolDistancePicker.m; sourceTree = "<group>"; };
 		1C6EE70A192BB41600A27994 /* ActionSheetPickerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetPickerAppDelegate.h; sourceTree = "<group>"; };
 		1C6EE70B192BB41600A27994 /* ActionSheetPickerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetPickerAppDelegate.m; sourceTree = "<group>"; };
 		1C6EE70C192BB41600A27994 /* ActionSheetPickerCustomPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetPickerCustomPickerDelegate.h; sourceTree = "<group>"; };
@@ -159,6 +162,8 @@
 				D66F5547FC9E0F428DA62D5C /* SWActionSheet.m */,
 				D66F5B444F4BC38CB3FFAAA7 /* ActionSheetLocalePicker.h */,
 				D66F5FA2442AF8D0CA4E38C9 /* ActionSheetLocalePicker.m */,
+				1BFA94051A1CBAA100814AEC /* ActionSheetPoolDistancePicker.h */,
+				1BFA94061A1CBAA100814AEC /* ActionSheetPoolDistancePicker.m */,
 			);
 			name = Pickers;
 			path = ../Pickers;
@@ -279,6 +284,7 @@
 			files = (
 				1C6EE737192BB4F600A27994 /* ActionSheetDistancePicker.m in Sources */,
 				1C6EE71D192BB41600A27994 /* NSDate+TCUtils.m in Sources */,
+				1BFA94071A1CBAA100814AEC /* ActionSheetPoolDistancePicker.m in Sources */,
 				1C6EE720192BB41600A27994 /* main.m in Sources */,
 				1C6EE71C192BB41600A27994 /* ActionSheetPickerViewController.m in Sources */,
 				1C6EE734192BB4F600A27994 /* AbstractActionSheetPicker.m in Sources */,
