@@ -7,6 +7,8 @@
 //
 
 #import "ActionSheetPoolDistancePicker.h"
+#import "DistancePickerView.h"
+
 
 @interface ActionSheetPoolDistancePicker()
 //@property (nonatomic, strong) NSString *bigUnitString;
@@ -156,14 +158,50 @@
     for (int i = 0; i < self.bigUnitDigits; ++i)
         bigUnits += [picker selectedRowInComponent:i] * (int)pow((double)10, (double)(self.bigUnitDigits - (i + 1)));
     
+    return bigUnits;
+    
 }
 
 -(NSInteger)smallUnits {
     NSInteger smallUnits = 0;
     
     DistancePickerView *picker = (DistancePickerView *)self.pickerView;
-    for (NSInteger i = self.bigUnitDigits + 1; i < self.bigUnitDigits + self.smallUnitDigits + 1; ++i)
-        smallUnits += [picker selectedRowInComponent:i] * (int)pow((double)10, (double)((picker.numberOfComponents - i - 2)));
+    
+    int numberOfComponents = picker.numberOfComponents - 1;
+    
+    if (self.smallUnitStrings && self.smallUnitStrings.count > 0) {
+        numberOfComponents--;
+    }
+    
+    for (NSInteger i = self.bigUnitDigits + 1; i < self.bigUnitDigits + self.smallUnitDigits + 1; ++i) {
+        smallUnits += [picker selectedRowInComponent:i] * (int)pow((double)10, (double)((numberOfComponents - i)));
+    }
+    
+    return smallUnits;
+}
+
+-(NSString *)selectedBigUnitString {
+    if (self.bigUnitStrings && self.bigUnitStrings.count > 0) {
+        DistancePickerView *picker = (DistancePickerView *)self.pickerView;
+        NSInteger selectedIndex = [picker selectedRowInComponent:self.bigUnitDigits];
+        NSString *unitString = [self.bigUnitStrings objectAtIndex:selectedIndex];
+        return unitString;
+    }
+    else {
+        return nil;
+    }
+}
+
+-(NSString *)selectedSmallUnitString {
+    
+    if (self.smallUnitStrings && self.smallUnitStrings.count > 0) {
+        DistancePickerView *picker = (DistancePickerView *)self.pickerView;
+        return [self.smallUnitStrings objectAtIndex:[picker selectedRowInComponent:self.bigUnitDigits + self.smallUnitDigits + 1]];
+    }
+    else {
+        return nil;
+    }
+    
 }
 
 #pragma mark -
