@@ -8,22 +8,47 @@
 
 #import "ActionSheetPoolDistancePicker.h"
 
+@interface ActionSheetPoolDistancePicker()
+//@property (nonatomic, strong) NSString *bigUnitString;
+@property (nonatomic, strong) NSArray *bigUnitStrings;
+@property (nonatomic, strong) NSArray *smallUnitStrings;
+@property (nonatomic, assign) NSInteger selectedBigUnit;
+@property (nonatomic, assign) NSInteger bigUnitMax;
+@property (nonatomic, assign) NSInteger bigUnitDigits;
+@property (nonatomic, assign) NSInteger selectedSmallUnit;
+@property (nonatomic, assign) NSInteger smallUnitMax;
+@property (nonatomic, assign) NSInteger smallUnitDigits;
+
+@property (nonatomic, copy) ActionSheetPoolPickerDoneBlock onActionSheetDone;
+@property (nonatomic, copy) ActionSheetPoolPickerCancelBlock onActionSheetCancel;
+
+@end
+
 @implementation ActionSheetPoolDistancePicker
 
-+ (id)showPickerWithTitle:(NSString *)title bigUnitString:(NSString *)bigUnitString bigUnitMax:(NSInteger)bigUnitMax selectedBigUnit:(NSInteger)selectedBigUnit smallUnitString:(NSString*)smallUnitString smallUnitMax:(NSInteger)smallUnitMax selectedSmallUnit:(NSInteger)selectedSmallUnit target:(id)target action:(SEL)action origin:(id)origin {
-    ActionSheetPoolDistancePicker *picker = [[ActionSheetPoolDistancePicker alloc] initWithTitle:title bigUnitString:bigUnitString bigUnitMax:bigUnitMax selectedBigUnit:selectedBigUnit smallUnitString:smallUnitString smallUnitMax:smallUnitMax selectedSmallUnit:selectedSmallUnit target:target action:action origin:origin];
++ (id)showPickerWithTitle:(NSString *)title bigUnitStrings:(NSArray *)bigUnitStrings bigUnitMax:(NSInteger)bigUnitMax selectedBigUnit:(NSInteger)selectedBigUnit smallUnitStrings:(NSArray*)smallUnitStrings smallUnitMax:(NSInteger)smallUnitMax selectedSmallUnit:(NSInteger)selectedSmallUnit doneBlock:(ActionSheetPoolPickerDoneBlock)doneBlock cancelBlock:(ActionSheetPoolPickerCancelBlock)cancelBlock origin:(id)origin {
+    
+    ActionSheetPoolDistancePicker *picker = [[ActionSheetPoolDistancePicker alloc] initWithTitle:title bigUnitStrings:bigUnitStrings bigUnitMax:bigUnitMax selectedBigUnit:selectedBigUnit smallUnitStrings:smallUnitStrings smallUnitMax:smallUnitMax selectedSmallUnit:selectedSmallUnit doneBlock:doneBlock cancelBlock:cancelBlock origin:origin];
+    
+    [picker showActionSheetPicker];
+    return picker;
+    
+}
+
++ (id)showPickerWithTitle:(NSString *)title bigUnitStrings:(NSArray *)bigUnitStrings bigUnitMax:(NSInteger)bigUnitMax selectedBigUnit:(NSInteger)selectedBigUnit smallUnitStrings:(NSArray*)smallUnitStrings smallUnitMax:(NSInteger)smallUnitMax selectedSmallUnit:(NSInteger)selectedSmallUnit target:(id)target action:(SEL)action origin:(id)origin {
+    ActionSheetPoolDistancePicker *picker = [[ActionSheetPoolDistancePicker alloc] initWithTitle:title bigUnitStrings:bigUnitStrings bigUnitMax:bigUnitMax selectedBigUnit:selectedBigUnit smallUnitStrings:smallUnitStrings smallUnitMax:smallUnitMax selectedSmallUnit:selectedSmallUnit target:target action:action origin:origin];
     [picker showActionSheetPicker];
     return picker;
 }
 
-- (id)initWithTitle:(NSString *)title bigUnitString:(NSString *)bigUnitString bigUnitMax:(NSInteger)bigUnitMax selectedBigUnit:(NSInteger)selectedBigUnit smallUnitString:(NSString*)smallUnitString smallUnitMax:(NSInteger)smallUnitMax selectedSmallUnit:(NSInteger)selectedSmallUnit target:(id)target action:(SEL)action origin:(id)origin {
+- (id)initWithTitle:(NSString *)title bigUnitStrings:(NSArray *)bigUnitStrings bigUnitMax:(NSInteger)bigUnitMax selectedBigUnit:(NSInteger)selectedBigUnit smallUnitStrings:(NSArray*)smallUnitStrings smallUnitMax:(NSInteger)smallUnitMax selectedSmallUnit:(NSInteger)selectedSmallUnit target:(id)target action:(SEL)action origin:(id)origin {
     self = [super initWithTarget:target successAction:action cancelAction:nil origin:origin];
     if (self) {
         self.title = title;
-        self.bigUnitString = bigUnitString;
+        self.bigUnitStrings = bigUnitStrings;
         self.bigUnitMax = bigUnitMax;
         self.selectedBigUnit = selectedBigUnit;
-        self.smallUnitString = smallUnitString;
+        self.smallUnitStrings = smallUnitStrings;
         self.smallUnitMax = smallUnitMax;
         self.selectedSmallUnit = selectedSmallUnit;
         self.bigUnitDigits = [[NSString stringWithFormat:@"%li", (long)self.bigUnitMax] length];
@@ -32,6 +57,25 @@
     return self;
 }
 
+- (id)initWithTitle:(NSString *)title bigUnitStrings:(NSArray *)bigUnitStrings bigUnitMax:(NSInteger)bigUnitMax selectedBigUnit:(NSInteger)selectedBigUnit smallUnitStrings:(NSArray*)smallUnitStrings smallUnitMax:(NSInteger)smallUnitMax selectedSmallUnit:(NSInteger)selectedSmallUnit doneBlock:(ActionSheetPoolPickerDoneBlock)doneBlock cancelBlock:(ActionSheetPoolPickerCancelBlock)cancelBlock origin:(id)origin {
+    self = [super initWithTarget:nil successAction:nil cancelAction:nil origin:origin];
+    if (self) {
+        self.title = title;
+        self.bigUnitStrings = bigUnitStrings;
+        self.bigUnitMax = bigUnitMax;
+        self.selectedBigUnit = selectedBigUnit;
+        self.smallUnitStrings = smallUnitStrings;
+        self.smallUnitMax = smallUnitMax;
+        self.selectedSmallUnit = selectedSmallUnit;
+        self.bigUnitDigits = [[NSString stringWithFormat:@"%li", (long)self.bigUnitMax] length];
+        self.smallUnitDigits = [[NSString stringWithFormat:@"%li", (long)self.smallUnitMax] length];
+        
+        self.onActionSheetCancel = cancelBlock;
+        self.onActionSheetDone = doneBlock;
+    }
+    
+    return self;
+}
 
 - (UIView *)configuredPickerView {
     CGRect distancePickerFrame = CGRectMake(0, 40, self.viewSize.width, 216);
@@ -69,46 +113,93 @@
 }
 
 - (void)notifyTarget:(id)target didSucceedWithAction:(SEL)action origin:(id)origin {
+    NSInteger bigUnits = [self bigUnits];
+    NSInteger smallUnits = [self smallUnits];
+    
+    //sending three objects, so can't use performSelector:
+    if (self.onActionSheetDone) {
+        self.onActionSheetDone(self,origin);
+    }
+    else {
+        if ([target respondsToSelector:action])
+        {
+            void (*response)(id, SEL, id, id,id) = (void (*)(id, SEL, id, id,id)) objc_msgSend;
+            response(target, action, @(bigUnits), @(smallUnits), origin);
+        }
+        else
+            NSAssert(NO, @"Invalid target/action ( %s / %s ) combination used for ActionSheetPicker", object_getClassName(target), sel_getName(action));
+    }
+    
+}
+
+- (void)notifyTarget:(id)target didCancelWithAction:(SEL)cancelAction origin:(id)origin
+{
+    if (self.onActionSheetCancel)
+    {
+        self.onActionSheetCancel(self);
+        return;
+    }
+    else
+        if ( target && cancelAction && [target respondsToSelector:cancelAction] )
+        {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            [target performSelector:cancelAction withObject:origin];
+#pragma clang diagnostic pop
+        }
+}
+
+-(NSInteger)bigUnits {
     NSInteger bigUnits = 0;
-    NSInteger smallUnits = 0;
+    
     DistancePickerView *picker = (DistancePickerView *)self.pickerView;
     for (int i = 0; i < self.bigUnitDigits; ++i)
         bigUnits += [picker selectedRowInComponent:i] * (int)pow((double)10, (double)(self.bigUnitDigits - (i + 1)));
     
+}
+
+-(NSInteger)smallUnits {
+    NSInteger smallUnits = 0;
+    
+    DistancePickerView *picker = (DistancePickerView *)self.pickerView;
     for (NSInteger i = self.bigUnitDigits + 1; i < self.bigUnitDigits + self.smallUnitDigits + 1; ++i)
         smallUnits += [picker selectedRowInComponent:i] * (int)pow((double)10, (double)((picker.numberOfComponents - i - 2)));
-    
-    //sending three objects, so can't use performSelector:
-    if ([target respondsToSelector:action])
-    {
-        void (*response)(id, SEL, id, id,id) = (void (*)(id, SEL, id, id,id)) objc_msgSend;
-        response(target, action, @(bigUnits), @(smallUnits), origin);
-    }
-    else
-        NSAssert(NO, @"Invalid target/action ( %s / %s ) combination used for ActionSheetPicker", object_getClassName(target), sel_getName(action));
 }
 
 #pragma mark -
 #pragma mark UIPickerViewDataSource
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return self.bigUnitDigits + 1 + 2;
+    
+    NSInteger count = self.bigUnitDigits + 1 + 1;
+    
+    if (self.smallUnitStrings && self.smallUnitStrings.count > 0) {
+        count++;
+    }
+    
+    return count;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     
-    //for labels
-    if (component == self.bigUnitDigits || component == self.bigUnitDigits + self.smallUnitDigits + 1)
-        return 1;
+    NSInteger numberOfRows = 10;
     
+    //for labels
+    if (component == self.bigUnitDigits) {
+        numberOfRows = self.bigUnitStrings.count;
+    } else if (component == self.bigUnitDigits + self.smallUnitDigits + 1) {
+        numberOfRows = self.smallUnitStrings.count;
+    }
     if (component + 1 <= self.bigUnitDigits) {
         if (component == 0)
-            return self.bigUnitMax / (int)pow((double)10, (double)(self.bigUnitDigits - 1)) + 1;
-        return 10;
+            numberOfRows = self.bigUnitMax / (int)pow((double)10, (double)(self.bigUnitDigits - 1)) + 1;
+        return
+        numberOfRows = 10;
     }
     if (component == self.bigUnitDigits + 1)
-        return self.smallUnitMax / (int)pow((double)10, (double)(self.smallUnitDigits - 1)) + 1;
-    return 10;
+        numberOfRows = self.smallUnitMax / (int)pow((double)10, (double)(self.smallUnitDigits - 1)) + 1;
+    
+    return numberOfRows;
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
@@ -124,12 +215,19 @@
     
     if ( component == self.bigUnitDigits )
     {
-        label.text = self.bigUnitString;
+        label.text = [self.bigUnitStrings objectAtIndex:row];
+        return label;
+    }
+    
+    //Small units
+    if (component == self.bigUnitDigits + 1) {
+        label.font = [UIFont systemFontOfSize:20];
+        label.text = [NSString stringWithFormat:@".%li0", (long)row];
         return label;
     }
     else if ( component == self.bigUnitDigits + self.smallUnitDigits + 1 )
     {
-        label.text = self.smallUnitString;
+        label.text = [self.smallUnitStrings objectAtIndex:row];
         return label;
     }
     
@@ -140,7 +238,13 @@
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
     CGFloat totalWidth = pickerView.frame.size.width - 30;
-    CGFloat otherSize = (totalWidth )/(self.bigUnitDigits + self.smallUnitDigits + 2);
+    NSInteger numberOfComponents = self.bigUnitDigits + self.smallUnitDigits + 1;
+    
+    if (self.smallUnitStrings && self.smallUnitStrings.count > 0) {
+        numberOfComponents++;
+    }
+    
+    CGFloat otherSize = (totalWidth )/(numberOfComponents);
     return otherSize;
 }
 
