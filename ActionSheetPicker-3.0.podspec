@@ -8,7 +8,7 @@ Pod::Spec.new do | s |
         'Petr Korolev' => 'https://github.com/skywinder',
         'Tim Cinel' => 'email@timcinel.com',
     }
-    s.source = { :git => 'https://github.com/skywinder/ActionSheetPicker-3.0.git', :tag => "#{s.version}" }
+    s.source = { :git => 'https://github.com/activeintime/ActionSheetPicker-3.0.git', :tag => "#{s.version}" }
      s.screenshots   = [ "http://skywinder.github.io/ActionSheetPicker-3.0/Screenshots/date.png",
                         "http://skywinder.github.io/ActionSheetPicker-3.0/Screenshots/distance.png",
                         "http://skywinder.github.io/ActionSheetPicker-3.0/Screenshots/ipad.png",
