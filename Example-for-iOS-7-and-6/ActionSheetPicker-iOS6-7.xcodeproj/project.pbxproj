@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B51203A1A320B9200425FB1 /* ActionSheetPoolTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5120391A320B9200425FB1 /* ActionSheetPoolTimePicker.m */; };
 		1BFA94071A1CBAA100814AEC /* ActionSheetPoolDistancePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA94061A1CBAA100814AEC /* ActionSheetPoolDistancePicker.m */; };
 		1C6EE71A192BB41600A27994 /* ActionSheetPickerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6EE70B192BB41600A27994 /* ActionSheetPickerAppDelegate.m */; };
 		1C6EE71B192BB41600A27994 /* ActionSheetPickerCustomPickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6EE70D192BB41600A27994 /* ActionSheetPickerCustomPickerDelegate.m */; };
@@ -36,6 +37,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B5120381A320B9200425FB1 /* ActionSheetPoolTimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetPoolTimePicker.h; sourceTree = "<group>"; };
+		1B5120391A320B9200425FB1 /* ActionSheetPoolTimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetPoolTimePicker.m; sourceTree = "<group>"; };
 		1BFA94051A1CBAA100814AEC /* ActionSheetPoolDistancePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetPoolDistancePicker.h; sourceTree = "<group>"; };
 		1BFA94061A1CBAA100814AEC /* ActionSheetPoolDistancePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetPoolDistancePicker.m; sourceTree = "<group>"; };
 		1C6EE70A192BB41600A27994 /* ActionSheetPickerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetPickerAppDelegate.h; sourceTree = "<group>"; };
@@ -145,6 +148,8 @@
 		1C6EE733192BB4F600A27994 /* Pickers */ = {
 			isa = PBXGroup;
 			children = (
+				1B5120381A320B9200425FB1 /* ActionSheetPoolTimePicker.h */,
+				1B5120391A320B9200425FB1 /* ActionSheetPoolTimePicker.m */,
 				1C6EE726192BB4F600A27994 /* AbstractActionSheetPicker.h */,
 				1C6EE727192BB4F600A27994 /* AbstractActionSheetPicker.m */,
 				1C6EE728192BB4F600A27994 /* ActionSheetCustomPicker.h */,
@@ -286,6 +291,7 @@
 				1C6EE71D192BB41600A27994 /* NSDate+TCUtils.m in Sources */,
 				1BFA94071A1CBAA100814AEC /* ActionSheetPoolDistancePicker.m in Sources */,
 				1C6EE720192BB41600A27994 /* main.m in Sources */,
+				1B51203A1A320B9200425FB1 /* ActionSheetPoolTimePicker.m in Sources */,
 				1C6EE71C192BB41600A27994 /* ActionSheetPickerViewController.m in Sources */,
 				1C6EE734192BB4F600A27994 /* AbstractActionSheetPicker.m in Sources */,
 				1C6EE71B192BB41600A27994 /* ActionSheetPickerCustomPickerDelegate.m in Sources */,
