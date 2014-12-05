@@ -4,7 +4,7 @@
   'roots': [
     {
       'type': 'directory',
-      'name': "/Users/morgz/iPhone/frameworkslibraries/ActionSheetPicker-3.0/Build/Products/Debug-iphoneos/CoreActionSheetPicker.framework/Headers",
+      'name': "/Users/morgz/iPhone/frameworkslibraries/ActionSheetPicker-3.0/Build/Products/Debug-iphonesimulator/CoreActionSheetPicker.framework/Headers",
       'contents': [
         {
           'type': 'file',
@@ -44,7 +44,7 @@
         {
           'type': 'file',
           'name': "CoreActionSheetPicker-Swift.h",
-          'external-contents': "/Users/morgz/iPhone/frameworkslibraries/ActionSheetPicker-3.0/Build/Products/Debug-iphoneos/CoreActionSheetPicker.framework/Headers/CoreActionSheetPicker-Swift.h"
+          'external-contents': "/Users/morgz/iPhone/frameworkslibraries/ActionSheetPicker-3.0/Build/Products/Debug-iphonesimulator/CoreActionSheetPicker.framework/Headers/CoreActionSheetPicker-Swift.h"
         },
         {
           'type': 'file',
@@ -60,12 +60,12 @@
     },
     {
       'type': 'directory',
-      'name': "/Users/morgz/iPhone/frameworkslibraries/ActionSheetPicker-3.0/Build/Products/Debug-iphoneos/CoreActionSheetPicker.framework/Modules",
+      'name': "/Users/morgz/iPhone/frameworkslibraries/ActionSheetPicker-3.0/Build/Products/Debug-iphonesimulator/CoreActionSheetPicker.framework/Modules",
       'contents': [
         {
           'type': 'file',
           'name': "module.modulemap",
-          'external-contents': "/Users/morgz/iPhone/frameworkslibraries/ActionSheetPicker-3.0/Build/Products/Debug-iphoneos/CoreActionSheetPicker.framework/Modules/module.modulemap"
+          'external-contents': "/Users/morgz/iPhone/frameworkslibraries/ActionSheetPicker-3.0/Build/Products/Debug-iphonesimulator/CoreActionSheetPicker.framework/Modules/module.modulemap"
         }
       ]
     }
