@@ -59,4 +59,8 @@ typedef void(^ActionStringCancelBlock)(ActionSheetStringPicker *picker);
 @property (nonatomic, copy) ActionStringDoneBlock onActionSheetDone;
 @property (nonatomic, copy) ActionStringCancelBlock onActionSheetCancel;
 
+@property (nonatomic, unsafe_unretained) NSInteger selectedIndex;
+@property (nonatomic, unsafe_unretained, readonly) id selectedObject;
+
+
 @end

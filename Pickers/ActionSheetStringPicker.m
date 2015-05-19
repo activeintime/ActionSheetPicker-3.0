@@ -29,7 +29,7 @@
 
 @interface ActionSheetStringPicker()
 @property (nonatomic,strong) NSArray *data;
-@property (nonatomic,assign) NSInteger selectedIndex;
+
 @end
 
 @implementation ActionSheetStringPicker
@@ -88,9 +88,13 @@
     return stringPicker;
 }
 
+-(id)selectedObject {
+    return (self.data.count > 0) ? (self.data)[(NSUInteger) self.selectedIndex] : nil;
+}
+
 - (void)notifyTarget:(id)target didSucceedWithAction:(SEL)successAction origin:(id)origin {
     if (self.onActionSheetDone) {
-        id selectedObject = (self.data.count > 0) ? (self.data)[(NSUInteger) self.selectedIndex] : nil;
+        id selectedObject = self.selectedObject;
         _onActionSheetDone(self, self.selectedIndex, selectedObject);
         return;
     }
@@ -101,7 +105,7 @@
 #pragma clang diagnostic pop
         return;
     }
-    NSLog(@"Invalid target/action ( %s / %s ) combination used for ActionSheetPicker and done block is nil.", object_getClassName(target), sel_getName(successAction));
+    NSLog(@"Invalid target/action ( %s / %s ) combination used for ActionSheetPicker.", object_getClassName(target), sel_getName(successAction));
 }
 
 - (void)notifyTarget:(id)target didCancelWithAction:(SEL)cancelAction origin:(id)origin {
